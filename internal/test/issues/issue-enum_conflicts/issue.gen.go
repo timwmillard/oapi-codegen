@@ -26,6 +26,13 @@ const (
 	ColorRed    Color = "Red"
 )
 
+// Defines values for Food.
+const (
+	FoodFruitApple      Food = "FruitApple"
+	FoodFruitBanana     Food = "FruitBanana"
+	VegetableCarrot 	Food = "VegetableCarrot"
+)
+
 // Defines values for FoodGroup.
 const (
 	FoodGroupFruit     FoodGroup = "Fruit"
@@ -54,6 +61,9 @@ const (
 
 // Color defines model for Color.
 type Color string
+
+// Food defines model for Food.
+type Food string
 
 // FoodGroup defines model for FoodGroup.
 type FoodGroup string
@@ -235,7 +245,8 @@ type GetFooResponse struct {
 	HTTPResponse *http.Response
 	JSON200      *struct {
 		Color     *Color     `json:"color,omitempty"`
-		Food      *FoodGroup `json:"food,omitempty"`
+		Food      *Food      `json:"food,omitempty"`
+		Foodgroup *FoodGroup `json:"foodgroup,omitempty"`
 		Fruit     *Fruit     `json:"fruit,omitempty"`
 		Town      *Town      `json:"town,omitempty"`
 		Vegetable *Vegetable `json:"vegetable,omitempty"`
@@ -284,7 +295,8 @@ func ParseGetFooResponse(rsp *http.Response) (*GetFooResponse, error) {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
 		var dest struct {
 			Color     *Color     `json:"color,omitempty"`
-			Food      *FoodGroup `json:"food,omitempty"`
+			Food      *Food      `json:"food,omitempty"`
+			Foodgroup *FoodGroup `json:"foodgroup,omitempty"`
 			Fruit     *Fruit     `json:"fruit,omitempty"`
 			Town      *Town      `json:"town,omitempty"`
 			Vegetable *Vegetable `json:"vegetable,omitempty"`
@@ -355,12 +367,13 @@ func RegisterHandlersWithBaseURL(router EchoRouter, si ServerInterface, baseURL 
 // Base64 encoded, gzipped, json marshaled Swagger object
 var swaggerSpec = []string{
 
-	"H4sIAAAAAAAC/4SSQe+TQBDFv8vT4wZIvXHTJm08aYzxYjxsYaBb6cxmd9CYhu9udqGBQ8OfC5Pwfm9h",
-	"fjzQyN0LE2tE/UBsrnS3eTzKICENxOMd9U98oxYGX4LlnvDLQP95Qo2owXGPyeAk0p6DjH5L/aCe1F4G",
-	"gsEpjE5fo/nJBvvofUY+WbZs98/9Ln95yy5Rg682/I4wOMs4XMbAL+n1BTcVRxuCaKoQtSovwGkycNxJ",
-	"otRpwlEUBQz+UIhOGDWqoiqqdIZ4YusdanwoquIAA2/1mtdcdpI7esrfL56CVSf8uUWNM+lJBAaBoheO",
-	"lJFDVaVbI6zEmbLeD67JXHmLwqvKNPmQWtXNdPP0+j5QhxrvyvUXKBf/5Sx/MuhE2rfCq/cEPE3uEjk0",
-	"Geiibi+c9U5prxtRe8BqNElavMnlRo3O3lqKTXBeZ0vJ2pSv/wEAAP//Tq6M0w4DAAA=",
+	"H4sIAAAAAAAC/4SSQY+UQBCF/8vTYwfIeuOmm8zEkxtjvBgPPVCwvTJVne5CYzb8d9MNDBxGdi7ThPoe",
+	"XfneKxq5emFijahfEZtnutp8fJRBQjoQj1fUP/CVWhh8CZZ7wk8D/esJNaIGxz0mg5NIuwdOYXT60fuB",
+	"YOaHT5YtWxh8p57UXgZ6tCGI/jfuHGT0+8wbuEbeR/ObHbbe4naBgzW+yR/es8uowZMNvyIMzjIOlzHw",
+	"XXq74C5i2dLgSdSq3AGnycBxJ4lSpwlHURQw+E0hOmHUqIqqqNI3xBNb71DjQ1EVDzDwVp+ztbKTnNFT",
+	"3l88BatO+HOLGmfSkwgMAkUvHCkjD1WV/hphJc6U9X5wTebKlyi8NSOdfEip6ma6WWvyPlCHGu/KrVHl",
+	"Uqdy7tJk0C0VORrONVpm+9X/W8BclESt6g+JPDQZ6OL6aDj3YUoidmaPgK0CyeoiWi4v1OgsuqXYBOd1",
+	"1po0T/n3LwAA//+WtYxzjgMAAA==",
 }
 
 // GetSwagger returns the content of the embedded swagger specification file

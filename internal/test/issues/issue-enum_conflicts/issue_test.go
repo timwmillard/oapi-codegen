@@ -58,4 +58,7 @@ func TestEnumConflicts(t *testing.T) {
 	require.Equal(t, `"Goulburn"`, constDefs["TownGoulburn"])
 	require.Equal(t, `"Orange"`, constDefs["TownOrange"])
 	require.Equal(t, `"Parks"`, constDefs["TownParks"])
+	require.Equal(t, `"FruitApple"`, constDefs["FoodFruitApple"])
+	require.Equal(t, `"FruitBanana"`, constDefs["FoodFruitBanana"])
+	require.Equal(t, `"VegetableCarrot"`, constDefs["FoodVegetableCarrot"])
 }

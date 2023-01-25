@@ -21,10 +21,12 @@ paths:
                     $ref: '#/components/schemas/Color'
                   vegetable:
                     $ref: '#/components/schemas/Vegetable'
-                  food:
+                  foodgroup:
                     $ref: '#/components/schemas/FoodGroup'
                   town:
                     $ref: '#/components/schemas/Town'
+                  food:
+                    $ref: '#/components/schemas/Food'
 
 
 components:
@@ -61,3 +63,10 @@ components:
         - Orange
         - Parks
         - Goulburn
+
+    Food: # Conflicts with Prefix
+      type: string
+      enum:
+        - FruitApple
+        - FruitBanana
+        - VegetableCarrot
